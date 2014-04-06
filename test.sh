@@ -4,11 +4,6 @@ if [ -t 1 ]; then
     c_green=$(tput setaf 2)
     c_normal=$(tput sgr0)
 fi
-die()
-{
-    echo "Error: $@"
-    exit 1
-}
 msg()
 {
     rcode=$?
