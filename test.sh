@@ -43,7 +43,7 @@ testdiff()
     fi
     for i in $(seq 1 $number); do
     diff ./files/correct.test$i ./files/$1.test$i > /dev/null
-    msg "$prefix Test$i"
+    msg "$prefix Test$i ${tests[$i]}"
     done
     if [ "$1" = "fold" ]; then
        [ -s "./files/fold.err" ]
@@ -52,5 +52,6 @@ testdiff()
     fi
     msg "$prefix Test$(($number+1)) testovanie stderr"
 }
+tests=("< ./files/file1" "-w 4 ./files/file1" "-w 5 -c <./files/file1" "< ./files/file2" "-w 1 < ./files/file2" "-w 1 -c ./files/file2" "./files/file3" "-w 2 < ./files/file3" "-c -w 2 < ./files/file3" "< ./files/file4" "< ./files/file4" "./files/file5")
 smoke_test fold && genoutput fold && testdiff fold
 smoke_test fold2 && genoutput fold2 && testdiff fold2
